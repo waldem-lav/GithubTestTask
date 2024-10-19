@@ -5,4 +5,7 @@
     <string name="enter_username">Enter username</string>
     <string name="download_zip">Download as ZIP</string>
     <string name="error_try_again">Oops, an error occurred! Try again</string>
+    <string name="forks_count">Forks count</string>
+    <string name="stargazers_count">Stargazers count</string>
+    <string name="watchers_count">Watchers count</string>
 </resources>
