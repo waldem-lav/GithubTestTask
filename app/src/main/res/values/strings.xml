@@ -2,4 +2,7 @@
     <string name="app_name">GithubTestTask</string>
     <string name="search">"Search"</string>
     <string name="history">"History"</string>
+    <string name="enter_username">Enter username</string>
+    <string name="download_zip">Download as ZIP</string>
+    <string name="error_try_again">Oops, an error occurred! Try again</string>
 </resources>

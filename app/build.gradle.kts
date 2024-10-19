@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.gradle)
 }
 
 android {
@@ -62,4 +64,14 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation)
     implementation(libs.androidx.lifecycle.viewmodel)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp3.nterceptor)
+
+    // Hilt
+    implementation(libs.androidx.hilt.navigation)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }
