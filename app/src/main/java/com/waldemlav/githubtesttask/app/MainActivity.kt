@@ -1,4 +1,4 @@
-package com.waldemlav.githubtesttask
+package com.waldemlav.githubtesttask.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
                         composable<Route.Search> {
                             val viewModel: SearchViewModel = hiltViewModel()
                             val state: SearchScreenState by viewModel.searchScreenState.collectAsState()
-                            SearchScreen(state, viewModel::searchUserRepos)
+                            SearchScreen(state, viewModel::searchUserRepos, viewModel::downloadRepo)
                         }
                         composable<Route.History> {}
                     }

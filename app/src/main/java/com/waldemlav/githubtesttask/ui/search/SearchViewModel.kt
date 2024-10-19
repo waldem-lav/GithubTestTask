@@ -2,6 +2,7 @@ package com.waldemlav.githubtesttask.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.waldemlav.githubtesttask.data.ZipDownloader
 import com.waldemlav.githubtesttask.data.network.model.GithubRepository
 import com.waldemlav.githubtesttask.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,6 +10,7 @@ import javax.inject.Inject
 import com.waldemlav.githubtesttask.data.network.Result.Error
 import com.waldemlav.githubtesttask.data.network.Result.Loading
 import com.waldemlav.githubtesttask.data.network.Result.Success
+import com.waldemlav.githubtesttask.di.NetworkModule
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -21,7 +23,10 @@ data class SearchScreenState(
 )
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val userRepo: UserRepository) : ViewModel() {
+class SearchViewModel @Inject constructor(
+    private val userRepo: UserRepository,
+    private val zipDownloader: ZipDownloader
+) : ViewModel() {
 
     private val _searchScreenState = MutableStateFlow(SearchScreenState())
     val searchScreenState = _searchScreenState.asStateFlow()
@@ -42,5 +47,10 @@ class SearchViewModel @Inject constructor(private val userRepo: UserRepository) 
                 }
             }
         }
+    }
+
+    fun downloadRepo(repo: GithubRepository) {
+        val url = NetworkModule.BASE_URL + "repos/${repo.owner.login}/${repo.name}/zipball"
+        zipDownloader.downloadFile(url, repo.name)
     }
 }

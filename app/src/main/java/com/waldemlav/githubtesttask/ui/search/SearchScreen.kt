@@ -9,15 +9,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -37,11 +34,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waldemlav.githubtesttask.R
 import com.waldemlav.githubtesttask.data.network.model.GithubRepository
+import com.waldemlav.githubtesttask.data.network.model.Owner
 
 @Composable
 fun SearchScreen(
     state: SearchScreenState,
-    searchUserRepos: (username: String) -> Unit
+    searchUserRepos: (username: String) -> Unit,
+    downloadZip: (repo: GithubRepository) -> Unit
 ) {
     var username by rememberSaveable { mutableStateOf("") }
 
@@ -81,7 +80,7 @@ fun SearchScreen(
         } else {
             LazyColumn (Modifier.padding(top = 8.dp)) {
                 items(items = state.userRepos, key = { repo -> repo.id }) { repo ->
-                    RepositoryItem(repo)
+                    RepositoryItem(repo, downloadZip)
                 }
             }
         }
@@ -89,7 +88,10 @@ fun SearchScreen(
 }
 
 @Composable
-fun RepositoryItem(item: GithubRepository) {
+fun RepositoryItem(
+    item: GithubRepository,
+    downloadZip: (repo: GithubRepository) -> Unit
+) {
     val uriHandler = LocalUriHandler.current
     Card(
         modifier = Modifier
@@ -101,11 +103,9 @@ fun RepositoryItem(item: GithubRepository) {
             }
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            item.name?.let {
-                Text(text = item.name, style = MaterialTheme.typography.headlineMedium)
-            }
+            Text(text = item.name, style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = {}) {
+            Button(onClick = { downloadZip.invoke(item) }) {
                 Text(text = stringResource(id = R.string.download_zip))
             }
         }
@@ -123,15 +123,28 @@ fun SearchScreenPreview() {
                     1,
                     "FakeRepo",
                     "",
+                    Owner("User#12"),
+                    "Yet another piece of software",
+                    "C++",
+                    0,
+                    0,
+                    0
                 ),
                 GithubRepository(
                     2,
                     "FakeRepo2",
                     "",
+                    Owner("User#51231"),
+                    "Telegram",
+                    "PHP",
+                    1,
+                    0,
+                    3
                 )
             )
         ),
-        searchUserRepos = {}
+        searchUserRepos = {},
+        downloadZip = {}
     )
 }
 
@@ -143,6 +156,13 @@ fun RepoItemPreview() {
             1,
             "FakeRepo",
             "",
-        )
+            Owner("User#12"),
+            "Yet another piece of software",
+            "C++",
+            0,
+            0,
+            0
+        ),
+        downloadZip = {}
     )
 }

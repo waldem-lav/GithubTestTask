@@ -1,4 +1,4 @@
-package com.waldemlav.githubtesttask
+package com.waldemlav.githubtesttask.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
