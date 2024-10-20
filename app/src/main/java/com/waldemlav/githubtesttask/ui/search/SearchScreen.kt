@@ -122,12 +122,6 @@ fun RepositoryItem(
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Column (horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(painterResource(R.drawable.icon_eye_24), stringResource(R.string.watchers_count))
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = item.watchersCount.toString(), style = MaterialTheme.typography.titleLarge)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Column (horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(
                         painterResource(R.drawable.icon_fork_20),
                         stringResource(R.string.forks_count),
@@ -163,7 +157,6 @@ fun SearchScreenPreview() {
                     "Yet another piece of software",
                     "C++",
                     0,
-                    0,
                     0
                 ),
                 GithubRepository(
@@ -174,8 +167,7 @@ fun SearchScreenPreview() {
                     "Telegram",
                     "PHP",
                     1,
-                    0,
-                    3
+                    3,
                 )
             )
         ),
@@ -195,7 +187,6 @@ fun RepoItemPreview() {
             Owner("User#12"),
             "Yet another piece of software",
             "C++",
-            0,
             0,
             0
         ),

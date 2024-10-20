@@ -23,6 +23,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.waldemlav.githubtesttask.ui.history.HistoryScreen
+import com.waldemlav.githubtesttask.ui.history.HistoryScreenState
+import com.waldemlav.githubtesttask.ui.history.HistoryViewModel
 import com.waldemlav.githubtesttask.ui.navigation.NavigationActions
 import com.waldemlav.githubtesttask.ui.navigation.Route
 import com.waldemlav.githubtesttask.ui.navigation.TOP_LEVEL_DESTINATIONS
@@ -77,7 +80,11 @@ class MainActivity : ComponentActivity() {
                             val state: SearchScreenState by viewModel.searchScreenState.collectAsState()
                             SearchScreen(state, viewModel::searchUserRepos, viewModel::downloadRepo)
                         }
-                        composable<Route.History> {}
+                        composable<Route.History> {
+                            val viewModel: HistoryViewModel = hiltViewModel()
+                            val state: HistoryScreenState by viewModel.screenState.collectAsState()
+                            HistoryScreen(state)
+                        }
                     }
                 }
             }

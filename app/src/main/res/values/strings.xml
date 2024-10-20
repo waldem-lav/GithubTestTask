@@ -7,5 +7,5 @@
     <string name="error_try_again">Oops, an error occurred! Try again</string>
     <string name="forks_count">Forks count</string>
     <string name="stargazers_count">Stargazers count</string>
-    <string name="watchers_count">Watchers count</string>
+    <string name="downloading_repository">Downloading GitHub repository…</string>
 </resources>

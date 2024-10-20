@@ -10,6 +10,5 @@ data class GithubRepository(
     @SerializedName("description") val description: String?,
     @SerializedName("language") val language: String?,
     @SerializedName("forks_count") val forksCount: Int,
-    @SerializedName("stargazers_count") val starCount: Int,
-    @SerializedName("watchers_count") val watchersCount: Int,
+    @SerializedName("stargazers_count") val starCount: Int
 )
