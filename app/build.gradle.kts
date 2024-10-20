@@ -63,6 +63,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.kotlinx.serialization.json)
     coreLibraryDesugaring(libs.android.desugar)
+    implementation(libs.androidx.splashscreen)
 
     // Navigation
     implementation(libs.androidx.navigation)

@@ -8,4 +8,5 @@
     <string name="forks_count">Forks count</string>
     <string name="stargazers_count">Stargazers count</string>
     <string name="downloading_repository">Downloading GitHub repository…</string>
+    <string name="no_history">No history yet…</string>
 </resources>
